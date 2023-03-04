@@ -30,7 +30,7 @@ public class HellowWorldController {
 	public String sayHello()
 	{
 		System.out.println("home");
-		return "say hello from my ist program on ubuntu going ok <a href=\"/demo\">click Here</a>";
+		return "say hello from my ist program on ubuntu going ok trying update <a href=\"/demo\">click Here</a>";
 	}
 	
 	@RequestMapping("/home1")
