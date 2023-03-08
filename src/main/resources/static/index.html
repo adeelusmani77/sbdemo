@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
+<title>Page Title</title>
+<script>
+        $(document).ready(function () {
+            $("#submitButton").click(function () {
+           
+            	var calculation = {
+            			"num1" : $("#fname").val(),
+            		    "num2" :$("#lname").val(),
+            		    "operand" : $("#operation").val()
+            	}
+
+
+                $.ajax({//
+                	//url: '/calculator',
+                    //type: 'POST',
+                    //data: jQuery.param({ ist: $("#fname").val(), second :$("#lname").val(),operand:$("#operation").val()}) ,
+                     //contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    url: '/demo/calculatorbody',
+                    type: 'POST',
+                    data: JSON.stringify(calculation),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                      // Success callback function
+                      //alert("abc");
+                      $("#ans").text(data.result);
+                    },
+                    error: function (xhr, status, error) {
+                      // Error callback
+                      //alert("def");
+                      $("#ans").text("Error: " + xhr.responseText);
+                    },
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph1.</p>
+
+<p>
+  <label for="fname">First Number:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="lname">Second Number:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+   <label for="operation">Operation:</label>
+
+<select name="operation" id="operation">
+  <option value="+">+</option>
+  <option value="-">-</option>
+  <option value="*">*</option>
+  <option value="/">/</option>
+</select> 
+  <input type="Button" id="submitButton" value="Submit">
+</p>
+<p id="ans">&nbsp;</p>
+</body>
+</html>
